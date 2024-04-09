@@ -10,7 +10,7 @@ import matrixImg from '@/public/matrix.jpg'
 import { containerStyle } from '@/components/containerstyle';
 import StyledTextField from '@/components/StyledTextfield';
 
-const HomePage = () => {
+const SuccessPage = () => {
     const router = useRouter();
     const [showEmail, setShowEmail] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -26,13 +26,13 @@ const HomePage = () => {
         formData.append('file', new Blob([csv as string]));
         formData.append('email', email);
 
-        const response = await fetch('/api', {
+        const response = await fetch('/api/scrape', {
             method: 'POST',
             body: formData
         });
 
         if (response.ok) {
-            router.push('/success');
+            router.push('/result');
         } else {
             console.error('Error submitting form');
         }
@@ -99,12 +99,12 @@ const HomePage = () => {
                     <Grid item width={600}>
                         <Box mt={2}>
                             <Typography fontWeight={900} fontSize={40} align="center">
-                                Free CSV data scraper
+                                Upload was successful
                             </Typography>
                         </Box>
                         <Box mt={2}>
                             <Typography fontWeight={900} fontSize={26} align="center">
-                                Upload CSV. Make sure the first column is called scraper and contains the URLs
+                                You will receive your scraped data via email! :)
                             </Typography>
                         </Box>
                         <Grid item justifyContent="center">
@@ -115,58 +115,16 @@ const HomePage = () => {
                                 justifyContent="center"
                                 alignItems="center"
                                 height={200}
-                                width={400}
+                                width={600}
                                 border={5}
                                 borderColor="black"
                             >
-                                {!csv ?
-                                    <Button
-                                        component="label"
-                                        role={undefined}
-                                        color="primary"
-                                        variant="contained"
-                                        tabIndex={-1}
-                                        startIcon={<CloudUploadIcon />}
-                                    >
-                                        Upload
-                                        <input
-                                            type="file"
-                                            hidden // Versteckt das Standard-Datei-Upload-Steuerelement
-                                            onChange={handleFileUpload}
-                                            accept=".csv" // Erlaubt nur das Hochladen von Bildern
-                                            capture// Öffnet die Kamera auf Mobilgeräten
-                                        />
-                                    </Button>
-                                    :
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                                        <ListItem style={{ placeContent: "center", padding: "unset" }}>
-                                            <a style={{ textDecoration: 'underline', color: 'inherit', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                                                download={csvName}
-                                                href={URL.createObjectURL(new Blob([csv]))}
-                                            >
-                                                <Typography fontWeight={900} fontSize={18} align="center">
-                                                    {csvName}
-                                                </Typography>
-                                            </a>
-                                            <IconButton
-                                                aria-label="remove"
-                                                size="small"
-                                                onClick={(e) => removeFileUpload()}
-                                            >
-                                                <CloseIcon color='primary' />
-                                            </IconButton>
-                                        </ListItem>
-                                    </div>
-                                }
-
+                                <Typography>
+                                    If you have questions in the meanwhile, feel free to contact <br></br>
+                                    <a href="mailto:office@pixxel.solutions">office@pixxel.solutions</a>
+                                </Typography>
                             </Box>
                         </Grid>
-                        {showEmail &&
-                            <Box display={"flex"}>
-                                <StyledTextField onChange={handleChange} value={email} required name='email' label='Email' fullWidth margin='normal' type='email' variant='filled' />
-                                <Button onClick={submit} variant='contained' disabled={!emailValid}>Get Scraped Data </Button>
-                            </Box>
-                        }
                     </Grid>
                 </Grid>
             </Grid>
@@ -174,4 +132,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default SuccessPage;
