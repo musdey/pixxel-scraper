@@ -3,11 +3,6 @@ import { NextResponse, NextRequest } from "next/server";
 import fs from "fs/promises";
 import { sendEmailWithAttachment } from "@/service/mailService";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 type BufferObj = {
   buffer: Buffer;
   email: string;

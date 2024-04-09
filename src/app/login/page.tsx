@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-import hairdresserImg from './matrix.jpg'
+import hairdresserImg from '@/public/matrix.jpg'
 import { containerStyle } from '@/components/containerstyle';
 import { useAuth } from '@/components/use-auth';
 import StyledTextField from '@/components/StyledTextfield';
