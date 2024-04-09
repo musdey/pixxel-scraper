@@ -16,12 +16,14 @@ const transporter = nodemailer.createTransport(userSettings);
 
 // Function to send email with attached CSV file
 async function sendEmailWithAttachment(file: string, to: string) {
+  console.log(JSON.stringify(userSettings));
+
   // Convert the CSV data to a Buffer
   // const csvBuffer = Buffer.from(csvData, "utf8");
   try {
     // Define the email options
     const mailOptions = {
-      from: "your-email@example.com",
+      from: userSettings.auth.user,
       to: to,
       subject: "Scraping finished",
       text: "Please find the attached CSV file. Thank you!",
