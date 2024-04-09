@@ -24,7 +24,7 @@ export async function scrapeService(csvBuffer: Buffer) {
     console.error('No column named "scraper"');
   }
 
-  for (let i = 0; i < Math.min(rows.length, 10); i++) {
+  for (let i = 0; i < Math.min(rows.length, 10000); i++) {
     try {
       const url: string = rows[i].scraper;
 
