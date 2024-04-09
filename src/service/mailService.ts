@@ -2,12 +2,12 @@ import * as nodemailer from "nodemailer";
 
 // Define the user settings for the transporter
 const userSettings = {
-  host: process.env.EMAIL_HOST || "smtp.ethereal.email",
-  port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 587,
-  secure: process.env.EMAIL_SECURE === "true" ? true : false,
+  host: process.env.EMAIL_HOST || "ssl0.ovh.net",
+  port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 465,
+  secure: process.env.EMAIL_SECURE === "true" ? false : true,
   auth: {
-    user: process.env.EMAIL_USER || "mathilde.rutherford23@ethereal.email",
-    pass: process.env.EMAIL_PASS || "sNUQwmppszG1WnPY49",
+    user: process.env.EMAIL_USER || "tool@pixxel.solutions",
+    pass: process.env.EMAIL_PASS || "HC%-C93mNXhmV%b",
   },
 };
 
