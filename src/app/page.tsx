@@ -1,6 +1,6 @@
 'use client'
 // pages/login.js
-import { Accordion, AccordionDetails, AccordionSummary, Backdrop, Box, Button, CircularProgress, Container, Divider, FormControl, Grid, IconButton, Input, InputLabel, ListItem, TextField, Typography, styled } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Backdrop, Box, Button, CircularProgress, Container, Divider, FormControl, Grid, IconButton, Input, InputLabel, ListItem, Snackbar, TextField, Typography, styled } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -18,6 +18,7 @@ const HomePage = () => {
     const [csvName, setCsvName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [emailValid, setEmailValid] = useState<boolean>(false);
+    const [open, setOpen] = useState(false);
 
     const submit = async () => {
         setLoading(true);
@@ -34,6 +35,9 @@ const HomePage = () => {
         if (response.ok) {
             router.push('/success');
         } else {
+            if (response.status === 413) {
+                setOpen(true);
+            }
             console.error('Error submitting form');
         }
 
@@ -76,8 +80,22 @@ const HomePage = () => {
         backgroundColor: "black",
     }
 
+    const handleClose = () => {
+        setOpen(false);
+    }
+
     return (
         <Container style={containerStyle}>
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                onClose={handleClose}
+            >
+                <Alert severity="error" style={{ backgroundColor: 'white', color: "black" }}>
+                    File is too large. Max allowed size is 20MB
+                </Alert>
+            </Snackbar>
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={loading}
