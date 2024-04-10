@@ -187,7 +187,7 @@ const HomePage = () => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    You can extract the telephone number and email address, provided that the email address is presented as a clickable link or a "mailto:" email link from any url.
+                                    You can extract the telephone number and email address, provided that the email address is presented as a clickable link or a &quot;mailto:&quot; email link from any url.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -218,7 +218,7 @@ const HomePage = () => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Yes, it's essential that the column containing the URLs you wish to scrape is named "scraper". Moreover, it's crucial that the first line contains a URL; if the first line lacks a URL, the scraper will not function.
+                                    Yes, it&apos;s essential that the column containing the URLs you wish to scrape is named &quot;scraper&quot;. Moreover, it&apos;s crucial that the first line contains a URL; if the first line lacks a URL, the scraper will not function.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
