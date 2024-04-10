@@ -1,7 +1,10 @@
 import { scrapeService } from "@/service/scrapingService";
 import { NextResponse, NextRequest } from "next/server";
 import fs from "fs/promises";
-import { sendEmailWithAttachment } from "@/service/mailService";
+import {
+  sendEmailWithAttachment,
+  sendConfirmationEmail,
+} from "@/service/mailService";
 
 type BufferObj = {
   buffer: Buffer;
@@ -38,6 +41,7 @@ export async function POST(request: NextRequest) {
     processQueue();
   }
 
+  await sendConfirmationEmail(email);
   return NextResponse.json({ message: "Request received" }, { status: 201 });
 }
 
@@ -53,7 +57,7 @@ async function processQueue() {
   if (file) {
     const result = await scrapeService(file.buffer);
 
-    await fs.writeFile("data.csv", result);
+    //await fs.writeFile("data.csv", result);
 
     await sendEmailWithAttachment(result, file.email);
   }
