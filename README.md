@@ -9,7 +9,7 @@ Thus, I created a simple Next.js application. This tool allowed users to upload 
 
 ![Screenshot](screen-scraper.png)
 
-# Video Explaining the scraper
+# Video Explaining the scraper 
 
 [Watch Video](https://videoassets.sendpotion.com/66155e685a6e8609da045c59_720p.mp4)
 
